@@ -6,6 +6,15 @@ const app = express();
 
 app.use(security);
 
+app.param('personId', (request, response, next, id) => {
+    request.values = {
+        person: {
+            id
+        }
+    };
+    next();
+});
+// ...
 app.get('/', (request, response) => {
     const { name } = request.query;
     if (Array.isArray(name) === true)
@@ -13,8 +22,7 @@ app.get('/', (request, response) => {
     response.end(sayHello(name))
 })
 .get('/persons/:personId', (request, response) => {
-    const { personId: id } = request.params;
-    response.end(id)
+    response.json(request.values.person)
 })
 .post('/', (request, response) => {
     response.status(401).end('Nope');
