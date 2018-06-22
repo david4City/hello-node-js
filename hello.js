@@ -1,15 +1,7 @@
 import http from 'http'
-import url from 'url'
-import sayHello from './sayHello.js'
+import app from './app';
 
-const requestHandler = (request, response) => {
-    const { query: { name } } = url.parse(request.url, true)
-    if(Array.isArray(name) === true)
-        return response.end(sayHello(name.join(' and ')));
-    return response.end(sayHello(name));
-}
-// ...
-const server = http.createServer(requestHandler)
+const server = http.createServer(app)
 
 server.on('error', (error) => {
     console.error(error);
@@ -20,7 +12,7 @@ server.on('listening', () => {
 })
 
 server.listen(3000, (err) => {
-    if(err) {
+    if (err) {
         return console.error(err)
     }
 });
