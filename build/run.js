@@ -20,7 +20,6 @@ compiler.watch({ aggregateTimeout: 500 }, (error, stats) => {
     if (stats.hasErrors()) {
         throw stats.compilation.errors.join('\n');
     }
-    // ... on next slide
     if (appProcess !== null) {
         appProcess.kill('SIGKILL');
         appProcess = null;

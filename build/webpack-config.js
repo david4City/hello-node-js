@@ -8,7 +8,7 @@ module.exports = {
         libraryTarget: 'umd'
     },
     target: 'node',
-    externals: ['http', 'url'],
+    externals: ['sequelize'],
     mode: 'development',
     devtool: '#cheap-module-source-map',
     module: {
