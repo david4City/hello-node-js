@@ -2,7 +2,7 @@ import express from 'express'
 import Person from '../models/Person'
 
 export default ({ scope = null } = {}) => {
-    Person.sync(); // Synchronize the table structure with the server
+    Person.sync({ alter: true, logging: true }); // Synchronize the table structure with the server
 
     const router = express.Router({ mergeParams: true })
 
